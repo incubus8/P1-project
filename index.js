@@ -8,6 +8,7 @@ let ul = document.querySelector('ul')
 let form = document.querySelector('#review')
 let averageRating = 0
 let countRating = 0
+let selectedRestaurantID = 1
 
 form.addEventListener('submit',(e) => addReviews(e))
 getSteaks()
@@ -23,7 +24,6 @@ function getSteaks(){
 
 function displaySteaks(steaks){
     steaks.forEach(renderRestaurants)
-    // console.log(steaks)
 }
 
 function renderRestaurants(steakObj){
@@ -47,6 +47,8 @@ function renderDetail(steakObj){
     detailImg.src = steakObj.image
     plates.textContent = steakObj["known for"]
     steakRating.textContent = steakObj.rating
+    selectedRestaurantID = steakObj.id
+    console.log(selectedRestaurantID)
 }
 
 function renderReviews(restaurantID){
@@ -63,12 +65,19 @@ function renderReviews(restaurantID){
 function addReviews(e){
     e.preventDefault()
     let newReview = e.target.newreview
-    let newReviewObj = {comments: newReview.value, rating: 5}
+    let newRating = parseInt(e.target.cars.value)
+    let newReviewObj = {comments: newReview.value, rating: newRating}
+    console.log(e.target.cars.value)
     math(newReviewObj)
     newReview.value = ""
+    fetch('http://localhost:3000/Reviews',{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            ...newReviewObj, resid: selectedRestaurantID
+        })
+    })
 
-    // console.log(e.target)
-    // fetch('http://localhost:3000/Reviews')
 
 }
 
@@ -81,6 +90,4 @@ function math (item){
     countRating ++
     let average = averageRating / countRating
     steakRating.textContent = average
-    console.log(average)
-
 }
