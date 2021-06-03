@@ -23,11 +23,19 @@ html{
     box-shadow: 5px 10px 10px #888888;
     text-align: center;
     overflow: scroll;
-    height: 90vh;
+    height: 88vh;
+    cursor: pointer;
 }
 
 #menu img{
     width: 90%;
+}
+
+#menu img:hover{
+    transform: scale(1.2);
+    width: 90%;
+    transition: all .2s;
+    border: crimson solid 2px;
 }
 
 img {
@@ -43,7 +51,7 @@ img {
 
 .menuItems{
     padding: 10px;
-    border-bottom: crimson solid 10px;
+    border-bottom: crimson solid 2px;
 }
 
 .mainContent{
@@ -125,4 +133,39 @@ span{
     text-align: center;
     padding: 25px;
     margin-bottom: 3vw;
+}
+
+.error{
+    background: orange;
+    color: black;
+    text-align: center;
+    box-shadow: 5px 10px 10px #888888;
+    margin-top: 2vw;
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .content{
+        margin: 0, 5vw;
+        display: flex;
+        flex-direction: column;
+    }
+    #menu{
+        display: flex;
+        flex-grow: 1;
+        height: 40vw;
+        width: 100%;
+    }
+    #menu img{
+        width: 40vw;
+    }
+    #newreview{
+        width: 32vw;
+        height: 35px;
+    }
+    li{
+        font-size: 15px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
 }

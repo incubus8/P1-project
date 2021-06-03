@@ -6,6 +6,7 @@ let steakRating = document.querySelector('#ratings')
 let address = document.querySelector('h2')
 let ul = document.querySelector('ul')
 let form = document.querySelector('#review')
+let h3 = document.querySelector('.error')
 let averageRating = 0
 let countRating = 0
 let selectedRestaurantID = 1
@@ -32,10 +33,10 @@ function renderRestaurants(steakObj){
     img.className = "menuItems"
     let h1 = document.createElement('h1')
     h1.textContent = steakObj.name
-    steakDiv.append(h1, img)
-
+    let resDiv = document.createElement('div')
+    resDiv.append(h1, img)
     img.addEventListener('click',() => renderDetail(steakObj))
-
+    steakDiv.append(resDiv)
 }
 
 function renderDetail(steakObj){
@@ -67,9 +68,10 @@ function addReviews(e){
     let newReview = e.target.newreview
     let newRating = parseInt(e.target.cars.value)
     let newReviewObj = {comments: newReview.value, rating: newRating}
-    console.log(e.target.cars.value)
+    if (newReview.value.trim() !== ""){
     renderLi(newReviewObj)
     newReview.value = ""
+    h3.style = "display: none"
     fetch('http://localhost:3000/Reviews',{
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -77,6 +79,11 @@ function addReviews(e){
             ...newReviewObj, resid: selectedRestaurantID
         })
     })
+    }
+    else {
+        h3.style = "display: inline"
+        console.log(h3)
+    } 
 }
 
 
@@ -87,5 +94,6 @@ function renderLi (item){
     averageRating += item.rating
     countRating ++
     let average = averageRating / countRating
-    steakRating.textContent = average
+    let decimal = Math.round(average * 10)/10
+    steakRating.textContent = decimal
 }
