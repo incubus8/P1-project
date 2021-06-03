@@ -5,31 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script defer src="index.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <title>Document</title>
 </head>
 <body>
-    <div id = "menu"></div>
-    <div id ="detail">
-        <h1>Name</h1>
-        <h2>Address:</h2>
-        <p id = "ratings">ratings</p>
-        <img id = "imgDetail" src="" alt="">
-        <p id = 'plates'>Plates</p>
-    </div>
-    <form id = "review"><input id = "newreview" type="text">
-        <select name="cars" id="cars">
-            <option value="5">5</option>
-            <option value="4">4</option>
-            <option value="3">3</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-        </select>
-        <input type="submit" value="submit">
-    </form>
-    <ul>
-        
-    </ul>
-        
+    <div class = "content">
+        <div id = "menu">
+            <div class = "title">
+            <h1>5 Steaks to try in NYC</h1>
+        </div>
+        </div>
+        <div class = "mainContent">
+            <div id ="detail">
+                <h1 class="resName">Name</h1>
+                <h2>Address:</h2>
+                <p>Best known for <span id= 'plates'></span></p>
+                <p>Customer Rating <span id ='ratings'></span></p>
+                <img id = "imgDetail" src="" alt="">
+            </div>
+        <h4>Leave a review and rating in the form below!</h4>
+        <form id = "review"><input id = "newreview" type="text">
+            <select name="cars" id="cars">
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+                <option value="2">2 stars</option>
+                <option value="1">1 stars</option>
+            </select>
+            <input id = 'button' type="submit" value="submit">
+        </form>
+        <h4>Customer Reviews</h4>
+        <ul>
+            
+        </ul>
+        </div>  
+    </div>     
 </body>
 </html>

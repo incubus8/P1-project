@@ -1,5 +1,5 @@
 let steakDiv = document.querySelector('#menu')
-let restaurantName = document.querySelector('h1')
+let restaurantName = document.querySelector('#detail h1')
 let detailImg = document.querySelector('#imgDetail')
 let plates = document.querySelector('#plates')
 let steakRating = document.querySelector('#ratings')
@@ -29,11 +29,12 @@ function displaySteaks(steaks){
 function renderRestaurants(steakObj){
     let img = document.createElement('img')
     img.src = steakObj.image
+    img.className = "menuItems"
     let h1 = document.createElement('h1')
     h1.textContent = steakObj.name
     steakDiv.append(h1, img)
 
-    img.addEventListener('click',() =>  renderDetail(steakObj))
+    img.addEventListener('click',() => renderDetail(steakObj))
 
 }
 
@@ -56,11 +57,10 @@ function renderReviews(restaurantID){
     .then(res => res.json())
     .then(reviews => reviews.map(item => {
         if (item.resid === restaurantID) {
-            math(item)
+            renderLi(item)
         }
     }))
 }
-
 
 function addReviews(e){
     e.preventDefault()
@@ -68,7 +68,7 @@ function addReviews(e){
     let newRating = parseInt(e.target.cars.value)
     let newReviewObj = {comments: newReview.value, rating: newRating}
     console.log(e.target.cars.value)
-    math(newReviewObj)
+    renderLi(newReviewObj)
     newReview.value = ""
     fetch('http://localhost:3000/Reviews',{
         method: "POST",
@@ -77,12 +77,10 @@ function addReviews(e){
             ...newReviewObj, resid: selectedRestaurantID
         })
     })
-
-
 }
 
 
-function math (item){
+function renderLi (item){
     let li = document.createElement('li')
     li.textContent = item.comments
     ul.append(li)
