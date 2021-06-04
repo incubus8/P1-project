@@ -50,7 +50,6 @@ function renderDetail(steakObj){
     plates.textContent = steakObj["known for"]
     steakRating.textContent = steakObj.rating
     selectedRestaurantID = steakObj.id
-    console.log(selectedRestaurantID)
 }
 
 function renderReviews(restaurantID){
@@ -82,7 +81,6 @@ function addReviews(e){
     }
     else {
         h3.style = "display: inline"
-        console.log(h3)
     } 
 }
 
